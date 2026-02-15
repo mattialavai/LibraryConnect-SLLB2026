@@ -93,14 +93,14 @@ export default function LoginPage() {
       {/* RIGHT — FORM */}
       <div className="flex flex-col justify-center items-center w-full md:w-1/2 px-6 py-10 relative z-20">
         {/* Header */}
-        <div className="flex justify-between w-full max-w-sm items-center mb-6">
-          <div className="flex items-center gap-2">
-            <Image src={logo} alt="logo" width={40} height={40} />
+        <div className="flex justify-between w-full max-w-sm items-center mb-8">
+          <div className="flex items-center gap-3">
+            <Image src={logo} alt="logo" width={30} height={30} />
             <h1 className="text-lg font-bold text-primary">SLLB</h1>
           </div>
 
           {/* Theme Toggle */}
-          <Button variant="ghost" size="icon" onClick={toggleTheme}>
+          <Button variant="ghost" size="icon" className="cursor-pointer" onClick={toggleTheme}>
             {theme === "light" ? <Moon /> : <Sun />}
           </Button>
         </div>

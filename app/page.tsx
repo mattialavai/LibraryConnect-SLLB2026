@@ -25,7 +25,7 @@ export default function SplashPage() {
   }, [user, loading, router]);
 
   const handleStart = () => {
-    router.push("/login");
+    router.push("/auth/login");
   };
 
   return (
@@ -56,13 +56,13 @@ export default function SplashPage() {
         {/* CTA */}
         <button
           onClick={handleStart}
-          className="bg-white text-black font-semibold px-8 py-3 rounded-full shadow-lg hover:scale-105 transition"
+          className="bg-white text-black font-semibold px-8 py-3 rounded-full shadow-lg hover:scale-105 transition cursor-pointer"
         >
           Get Started →
         </button>
 
         {/* Optional hint */}
-        <p className="text-gray-300 text-sm mt-6 animate-pulse">
+        <p className="text-gray-300 text-sm mt-6 animate-pulse cursor-pointer">
           Swipe or tap to continue
         </p>
       </div>
