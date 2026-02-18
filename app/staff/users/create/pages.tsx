@@ -1,3 +1,3 @@
 export default function CreateUserPage() {
-  return <div>Create User</div>;
+  return <div className="p-6">Create User UI coming soon</div>;
 }

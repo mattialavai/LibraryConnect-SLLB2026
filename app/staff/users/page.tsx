@@ -1,3 +1,3 @@
 export default function UsersPage() {
-  return <div>Users List</div>;
+  return <div className="p-6">Users Management UI coming soon</div>;
 }

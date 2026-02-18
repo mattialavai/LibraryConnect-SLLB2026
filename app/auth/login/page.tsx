@@ -60,8 +60,11 @@ export default function LoginPage() {
     setUser(foundUser);
 
     // role-based routing
-    if (foundUser.role === "PATRON") router.replace("/portal");
-    else router.replace("/dashboard");
+    if (foundUser.role === "PATRON") {
+    router.replace("/portal"); // stays same
+    } else {
+      router.replace("/staff/dashboard"); // include the (staff) segment
+    }
   };
 
   return (
