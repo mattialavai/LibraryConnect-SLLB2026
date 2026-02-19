@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 import { User } from "@/types/user";
 
 type AuthStore = {
@@ -7,20 +8,17 @@ type AuthStore = {
   logout: () => void;
 };
 
-export const useAuthStore = create<AuthStore>((set) => ({
-  user: null,
+export const useAuthStore = create<AuthStore>()(
+  persist(
+    (set) => ({
+      user: null,
 
-  setUser: (user) => {
-    if (user) {
-      localStorage.setItem("lc_user", JSON.stringify(user));
-    } else {
-      localStorage.removeItem("lc_user");
+      setUser: (user) => set({ user }),
+
+      logout: () => set({ user: null }),
+    }),
+    {
+      name: "lc_user", // localStorage key
     }
-    set({ user });
-  },
-
-  logout: () => {
-    localStorage.removeItem("lc_user");
-    set({ user: null });
-  },
-}));
+  )
+);

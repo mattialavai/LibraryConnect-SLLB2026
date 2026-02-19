@@ -9,7 +9,8 @@ export default function PortalLayout({ children }: { children: React.ReactNode }
   const [collapsed, setCollapsed] = useState(false);
 
   return (
-    <div className="flex h-screen bg-background">
+    <div className="bg-background">
+      {/* SIDEBAR */}
       <Sidebar
         isOpen={isOpen}
         toggleSidebar={() => setIsOpen(!isOpen)}
@@ -17,10 +18,15 @@ export default function PortalLayout({ children }: { children: React.ReactNode }
         setCollapsed={setCollapsed}
       />
 
-      <div className="flex-1 flex flex-col">
+      {/* CONTENT WRAPPER */}
+      <div
+        className={`min-h-screen transition-all duration-300 flex flex-col ${
+          collapsed ? "md:ml-20" : "md:ml-64"
+        }`}
+      >
         <Header toggleSidebar={() => setIsOpen(!isOpen)} />
 
-        <main className="flex-1 overflow-y-auto p-6">{children}</main>
+        <main className="flex-1 p-6">{children}</main>
       </div>
     </div>
   );

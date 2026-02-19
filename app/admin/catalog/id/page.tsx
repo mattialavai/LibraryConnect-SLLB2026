@@ -1,5 +1,5 @@
-
-"use client"; 
+// app/admin/catalog/id/page.tsx
+"use client"; // optional if you use client-side hooks
 
 export default function CatalogDetailPage() {
   return (

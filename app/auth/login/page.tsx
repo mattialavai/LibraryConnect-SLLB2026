@@ -9,7 +9,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-import { useAuth } from "@/features/hooks/useAuth";
+import { useAuthStore } from "@/features/auth/store";
 import { useTheme } from "@/providers/ThemeProvider"; // make sure your ThemeProvider wraps _app or layout
 
 import logo from "@/app/assets/logo.png";
@@ -17,14 +17,15 @@ import bg1 from "@/app/assets/login-bg1.jpg";
 import bg2 from "@/app/assets/login-bg2.jpg";
 
 const mockUsers = [
-  { email: "admin@sllb.sl", password: "admin123", role: "STAFF" },
+  { email: "admin@sllb.sl", password: "admin123", role: "ADMIN" },
+  { email: "head@sllb.sl", password: "head123", role: "HEAD" },
   { email: "librarian@sllb.sl", password: "lib123", role: "STAFF" },
   { email: "patron@sllb.sl", password: "patron123", role: "PATRON" },
 ];
 
 export default function LoginPage() {
   const router = useRouter();
-  const { setUser } = useAuth();
+  const setUser = useAuthStore((s) => s.setUser);
   const { theme, toggleTheme } = useTheme();
 
   const [email, setEmail] = useState("");
@@ -59,12 +60,10 @@ export default function LoginPage() {
 
     setUser(foundUser);
 
-    // role-based routing
-    if (foundUser.role === "PATRON") {
-    router.replace("/portal"); // stays same
-    } else {
-      router.replace("/staff/dashboard"); // include the (staff) segment
-    }
+    if (foundUser.role === "PATRON") router.replace("/portal");
+    else if (foundUser.role === "ADMIN") router.replace("/admin/dashboard");
+    else if (foundUser.role === "HEAD") router.replace("/head");
+    else if (foundUser.role === "STAFF") router.replace("/staff");
   };
 
   return (
